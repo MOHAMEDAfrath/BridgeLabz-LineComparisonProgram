@@ -4,6 +4,11 @@ namespace LineComparisonProblem
 {
     class Program
     {
+        /// <summary>
+        /// UC1: Find the length between points.
+        /// UC2: Find the Equality of lines.
+        /// UC3: Find the line which is greater or smaller
+        /// </summary>
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Line Comparison Problem!");
@@ -18,11 +23,45 @@ namespace LineComparisonProblem
                 int xPoint2 = int.Parse(Console.ReadLine());
                 int yPoint2 = int.Parse(Console.ReadLine());
                 double lengthLine1 = Math.Round(Program.findLength(xPoint1, yPoint1, xPoint2, yPoint2), 2);
-                Console.WriteLine("Length of Line "+i+" is " +lengthLine1);
+                Console.WriteLine("Length of Line " + i + " is " + lengthLine1);
                 //storing length in array
                 lengthArray[i] = lengthLine1;
             }
-            Program.checkEquality(lengthArray[1].ToString(), lengthArray[2].ToString());
+          
+            while(true)
+            {
+                Console.WriteLine("Enter 0 to check equality / Enter 1 to compare Lines/ Enter 2 to Exit");
+                int option = int.Parse(Console.ReadLine());
+                switch (option)
+                {
+                    case 0:
+                        Program.checkEquality(lengthArray[1].ToString(), lengthArray[2].ToString());
+                        break;
+                    case 1:
+                        Program.comparingTheLines(lengthArray[1].ToString(), lengthArray[2].ToString());
+                        break;
+                    case 2:
+                        return;
+                    default:
+                        break;
+
+                }
+            }
+        }
+        public static void comparingTheLines(string length1, string length2)
+        {
+            if(length1.CompareTo(length2) > 0)
+            {
+                Console.WriteLine("The Line1 with length "+length1+ " is greater than Line2 with length "+length2);
+            }else if(length1.CompareTo(length2) < 0)
+            {
+                Console.WriteLine("The Line2 with length " + length2 + " is greater than Line1 with length " + length1);
+            }
+            else
+            {
+                Console.WriteLine("Both Lines are of same length");
+            }
+
         }
         //static function that uses Equals method to compare lengths
         public static void checkEquality(string length1, string length2)
